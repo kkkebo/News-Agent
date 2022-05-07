@@ -7,6 +7,15 @@
     <orderEntry type="jdk" jdkName="Python 3.9 (usernotes)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
+  <component name="PyNamespacePackagesService">
+    <option name="namespacePackageFolders">
+      <list>
+        <option value="$MODULE_DIR$/djsitetest/media" />
+        <option value="$MODULE_DIR$/djsitetest/templates" />
+        <option value="$MODULE_DIR$/djsitetest/djsitetest/static" />
+      </list>
+    </option>
+  </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
   </component>
