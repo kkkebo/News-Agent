@@ -13,6 +13,8 @@
         <option value="$MODULE_DIR$/djsitetest/media" />
         <option value="$MODULE_DIR$/djsitetest/templates" />
         <option value="$MODULE_DIR$/djsitetest/djsitetest/static" />
+        <option value="$MODULE_DIR$/djsitetest/static" />
+        <option value="$MODULE_DIR$/djsitetest/news/templates" />
       </list>
     </option>
   </component>

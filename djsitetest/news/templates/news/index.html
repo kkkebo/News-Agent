@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block sidebar %}
-    {% include 'inc/_sideber.html' %}
+    {% include 'inc/_sidebar.html' %}
 {% endblock %}
 
 {% block content %}
@@ -19,7 +19,7 @@
                     {% if item.photo %}
                         <img src="{{ item.photo.url }}" alt="" width="300" class="mr-3">
                     {% else %}
-                        <img src="https://picsum.photos/id/1031/300/300?grayscale" alt="" class="mr-3">
+                        <img src="https://picsum.photos/id/1031/300/300?blur=2" alt="" class="mr-3">
                     {% endif %}
                     <div class="media-body">
                         <h5 class="card-title">{{ item.title }}</h5>

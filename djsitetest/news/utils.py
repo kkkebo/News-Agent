@@ -1,0 +1,2 @@
+class NewsMixin:
+    pass
