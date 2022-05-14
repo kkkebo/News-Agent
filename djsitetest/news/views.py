@@ -3,10 +3,37 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView
-from .forms import NewsForm
+from .forms import NewsForm, UserRegisterForm
+from django.contrib import messages
 
 
 from .models import News, Category
+
+
+def login(request):
+    return render(request, 'news/login.html')
+
+
+class SignUp(CreateView):
+    form_class = UserRegisterForm
+    success_url = reverse_lazy("login") #  где login — это параметр "name" в path()
+    template_name = "news/register.html"
+
+
+# def register(request):
+#     form = UserRegisterForm()
+#     if request.method == 'POST':
+#         form = UserRegisterForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             messages.success(request, 'Вы успешно зарегистрировались')
+#             return redirect('login')
+#         else:
+#             messages.error(request, 'Ошибка регистрации')
+#     else:
+#         form = UserRegisterForm()
+#
+#     return render(request, 'news/register.html', {'form': form})
 
 
 def test(request):
