@@ -1,17 +1,28 @@
+from django.contrib.auth import logout
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView
-from .forms import NewsForm, UserRegisterForm
+from .forms import NewsForm, UserRegisterForm, LoginUserForm
 from django.contrib import messages
 
 
 from .models import News, Category
 
 
-def login(request):
-    return render(request, 'news/login.html')
+def logout_user(request):
+    logout(request)
+    return render(request, 'news/logout.html')
+
+
+class Login(LoginView):
+    form_class = LoginUserForm
+    template_name = 'news/login.html'
+
+    def get_success_url(self):
+        return reverse_lazy('home')
 
 
 class SignUp(CreateView):

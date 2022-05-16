@@ -14,21 +14,47 @@
 <div class="card mb-3">
     <div class="card-header">
         Категория: <a href="{{ item.category.get_absolute_url }}">{{ item.category }}</a>
+
+{#<div class="card mb-3">#}
+{#    <div class="row g-0">#}
+{#        <div class="col-md-3">#}
+{#            {% if item.photo %}#}
+{#                <img src="{{ item.photo.url }}" alt="" width="350" class="mr-3">#}
+{#            {% else %}#}
+{#                <img src="https://picsum.photos/id/1012/350/235/?blur=2" alt="" class="mr-3">#}
+{#            {% endif %}#}
+{#        </div>#}
+{#        <div class="col-md-9">#}
+{#            <div class="card-body">#}
+{#                <h5 class="card-title">{{ item.title }}</h5>#}
+{#                <p class="card-text">{{ item.content|safe|linebreaks|truncatewords:50 }}</p>#}
+{#                <p class="card-text"><small class="text-muted">{{ item.created_at|date:"Y-m-d H:i:s" }}</small></p>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+
+
+
+
+
     </div>
     <div class="card-body">
-        <div class="media">
-            {% if item.photo %}
-            <img src="{{ item.photo.url }}" alt="" width="350" class="mr-3">
-            {% else %}
-            <img src="https://picsum.photos/id/1012/350/235/?blur=2" alt="" class="mr-3">
-            {% endif %}
-            <div class="media-body">
-                <h5 class="card-title">{{ item.title }}</h5>
-                <p class="card-text">{{ item.content|safe|linebreaks|truncatewords:50 }}</p>
-                <a href="{{ item.get_absolute_url }}" class="btn btn-primary">Read more...</a>
+        <div class="row g-0">
+            <div class="media">
+                {% if item.photo %}
+                <img src="{{ item.photo.url }}" alt="" width="350" class="mr-3">
+                {% else %}
+                <img src="https://picsum.photos/id/1001/350/235/?blur=2" alt="" class="mr-3">
+                {% endif %}
+
+                <div class="media-body">
+                    <h5 class="card-title">{{ item.title }}</h5>
+                    <p class="card-text">{{ item.content|safe|linebreaks|truncatewords:50 }}</p>
+                    <a href="{{ item.get_absolute_url }}" class="btn btn-primary">Read more...</a>
+                </div>
             </div>
         </div>
-
     </div>
     <div class="card-footer text-muted">
         {{ item.created_at|date:"Y-m-d H:i:s" }}
