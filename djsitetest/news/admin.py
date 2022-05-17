@@ -1,11 +1,23 @@
 from django.contrib import admin
+from django import forms
 from django.utils.safestring import mark_safe
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
+
 
 from .models import *
 
 
+class NewsAdminForm(forms.ModelForm):
+    content = forms.CharField(widget=CKEditorUploadingWidget())
+
+    class Meta:
+        model = News
+        fields = '__all__'
+
+
 class NewsAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'category', 'get_photo', 'created_at', 'updated_at', 'is_published',]
+    form = NewsAdminForm
+    list_display = ('id', 'title', 'category', 'get_photo', 'created_at', 'updated_at', 'is_published')
     list_display_links = ('id', 'title')
     search_fields = ('title', 'content')
     list_editable = ('is_published',)
@@ -14,13 +26,13 @@ class NewsAdmin(admin.ModelAdmin):
     readonly_fields = ('get_photo', 'created_at', 'updated_at')
     save_on_top = True
 
-
     def get_photo(self, obj):
         if not obj.photo:
             return 'Фото не добавлено'
         return mark_safe(f'<img src="{obj.photo.url}" width="75">')
 
     get_photo.short_description = 'Миниатюра'
+
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['id', 'title']

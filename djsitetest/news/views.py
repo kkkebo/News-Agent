@@ -4,8 +4,8 @@ from django.contrib.auth.views import LoginView
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView
-from .forms import NewsForm, UserRegisterForm, LoginUserForm
+from django.views.generic import ListView, DetailView, CreateView, FormView
+from .forms import NewsForm, UserRegisterForm, LoginUserForm, ContactForm
 from django.contrib import messages
 
 
@@ -15,6 +15,16 @@ from .models import News, Category
 def logout_user(request):
     logout(request)
     return render(request, 'news/logout.html')
+
+
+class ContactFormView(FormView):
+    form_class = ContactForm
+    template_name = 'news/contact.html'
+    success_url = reverse_lazy('home')
+
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        return redirect('home')
 
 
 class Login(LoginView):
@@ -27,7 +37,7 @@ class Login(LoginView):
 
 class SignUp(CreateView):
     form_class = UserRegisterForm
-    success_url = reverse_lazy("login") #  где login — это параметр "name" в path()
+    success_url = reverse_lazy("login")
     template_name = "news/register.html"
 
 
@@ -47,12 +57,12 @@ class SignUp(CreateView):
 #     return render(request, 'news/register.html', {'form': form})
 
 
-def test(request):
-    objects = ['user1', 'user2', 'user3', 'user4', 'user5', 'user6', 'user7']
-    paginator = Paginator(objects, 2)
-    page_num = request.GET.get('page')
-    page_objects = paginator.get_page(page_num)
-    return render(request, 'news/test.html', {'page_obj': page_objects})
+# def test(request):
+#     objects = ['user1', 'user2', 'user3', 'user4', 'user5', 'user6', 'user7']
+#     paginator = Paginator(objects, 2)
+#     page_num = request.GET.get('page')
+#     page_objects = paginator.get_page(page_num)
+#     return render(request, 'news/test.html', {'page_obj': page_objects})
 
 class HomeNews(ListView):
     model = News
