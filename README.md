@@ -1,4 +1,12 @@
 # djsitetest
-Test site for study django
+Новостной сайт.
+- Авторизация и аутентификация пользователей.
+- Валидация данных.
+- Подключен дебаг и кэширование.
+- Использован эмулятор email-сервера.
+- Выбор по категориям и поиск по тэгам.
+- Зарегистрированным пользователям можно предложить пост, оформив его с помощью библиотеки ck-editor.
+- Тонко настроенная админка.
+- Пагинация.
 
-source venv/Scripts/activate
+Tech stack: Python 3.9, Django, ООП, SQL-lite, django-debug-toolbar, django templates, HTML, CSS, bootstrap.
